@@ -11,6 +11,8 @@ export class TaskListComponent implements OnInit {
 
   toDoTasks: Task[] | undefined;
   doneTasks: Task[] | undefined;
+  loadedToDoTasks: boolean = false;
+  loadedDoneTasks: boolean = false;
 
   constructor(public service: TaskService) { }
 
@@ -24,6 +26,7 @@ export class TaskListComponent implements OnInit {
       data => {
         this.toDoTasks = data.content;
         console.log(data);
+        this.loadedToDoTasks = true;
       }
     )
   }
@@ -33,8 +36,28 @@ export class TaskListComponent implements OnInit {
       data => {
         this.doneTasks = data.content;
         console.log(data);
+        this.loadedDoneTasks = true;
       }
     )
+  }
+
+  closeTask(task: Task) {
+    task.status = 'DONE';
+    this.service.updateTask(task, task.id).subscribe(
+      data => {
+        console.log(data);
+        this.getDoneTasks();
+        this.getToDoTasks();
+      }
+    )
+  }
+
+  removeTask(task: Task) {
+    this.service.deleteTask(task.id).subscribe(data => {
+      console.log(data)
+      this.getDoneTasks();
+      this.getToDoTasks();
+    });
   }
 
 }

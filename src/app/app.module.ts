@@ -12,12 +12,14 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatInputModule} from '@angular/material/input'
-import {MatDialogModule} from '@angular/material/dialog'; 
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatDatepickerModule} from '@angular/material/datepicker';  
 import { TaskListComponent } from './views/home/task-list/task-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskFormDialogComponent } from './views/home/task-form-dialog/task-form-dialog.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatDatepickerModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

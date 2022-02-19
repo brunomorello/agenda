@@ -19,8 +19,9 @@ export class TaskService {
   constructor(private httpClient: HttpClient) { }
 
   public getTasksWithStatus(status: string): Observable<TaskResponsePageable> {
-    this.apiUrl.searchParams.set('status', status);
-    return this.httpClient.get<TaskResponsePageable>(this.apiUrl.toString());
+    let url = new URL(this.apiUrl);
+    url.searchParams.set('status', status);
+    return this.httpClient.get<TaskResponsePageable>(url.toString());
   }
 
   public postTask(request: TaskDTO): Observable<Task> {
@@ -28,6 +29,20 @@ export class TaskService {
       this.apiUrl.toString(),
       request,
       this.httpOptions
+    );
+  }
+
+  public updateTask(request: TaskDTO, id: string): Observable<any> {
+    return this.httpClient.put<any>(
+      this.apiUrl.toString().concat(id),
+      request,
+      this.httpOptions
+    );
+  }
+
+  public deleteTask(id: string): Observable<any> {
+    return this.httpClient.delete<any>(
+      this.apiUrl.toString().concat(id)
     );
   }
 }

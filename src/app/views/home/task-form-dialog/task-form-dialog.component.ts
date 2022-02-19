@@ -21,15 +21,27 @@ export class TaskFormDialogComponent implements OnInit {
   ngOnInit(): void {
     this.taskForm = this.fb.group({
       shortDescription: ['', [Validators.required]],
-      description: ['', [Validators.required]]
+      description: ['', [Validators.required]],
+      dueDate: ['', [Validators.required]],
+      dueDateTime: ['', [Validators.required, Validators.pattern('([0-1][0-9]):([0-6][0-9])')]]
     })
   }
 
   addTask(): void {
+    let dueDateAux = new Date(this.taskForm.value.dueDate);
+    let dueDateHourAux = this.taskForm.value.dueDateTime.split(':')[0];
+    let dueDateMinutesAux = this.taskForm.value.dueDateTime.split(':')[1];
+    dueDateAux.setHours(dueDateHourAux);
+    dueDateAux.setMinutes(dueDateMinutesAux);
+
+    console.log(this.taskForm.value);
+    
+    this.taskForm.value.dueDate = dueDateAux;
     this.service.postTask(this.taskForm.value)
       .subscribe(result => {
         console.log(result);
         this.closeAndReset();
+        window.location.reload();
       });
   }
 

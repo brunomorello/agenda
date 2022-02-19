@@ -1,6 +1,7 @@
 <mat-tab-group mat-align-tabs="start" class="tab-component">
     <mat-tab label="To-do">
-        <div fxLayout="row wrap" fxLayoutAlign="start center" class="tab-row-content">
+        <mat-progress-bar *ngIf="!loadedToDoTasks" mode="indeterminate"></mat-progress-bar>
+        <div *ngIf="loadedToDoTasks" fxLayout="row wrap" fxLayoutAlign="start center" class="tab-row-content">
             <ng-container *ngFor="let task of toDoTasks" class="tab-card-containter">
 
                 <mat-card class="task-card" fxFlex="0 1 calc(33.3% - 11px)"
@@ -11,23 +12,26 @@
                         <p>
                             {{ task.description }}
                         </p>
-                        <span fxFlex="5"> Created At:</span>
-                        <span fxFlex="25" fxLayoutAlign="end center">
-                            <mat-chip>
-                                {{ task.createdAt | date:'short' }}
-                            </mat-chip>
-                        </span>
+                        <div *ngIf="task.dueDate">
+                            <span fxFlex="5"> Due Date:</span>
+                            <span fxFlex="25" fxLayoutAlign="end center">
+                                <mat-chip>
+                                    {{ task.dueDate | date:'short' }}
+                                </mat-chip>
+                            </span>
+                        </div>
                     </mat-card-subtitle>
                     <mat-card-actions>
-                      <button mat-button>DONE</button>
-                      <button mat-button>REMOVE</button>
+                      <button mat-raised-button color="primary" (click)="closeTask(task)">DONE</button>
+                      <button mat-button color="warn" (click)="removeTask(task)">REMOVE</button>
                     </mat-card-actions>
                   </mat-card>
             </ng-container>
         </div>       
     </mat-tab>
     <mat-tab label="Done">
-        <div fxLayout="row wrap" fxLayoutAlign="start center" class="tab-row-content">
+        <mat-progress-bar *ngIf="!loadedDoneTasks" mode="indeterminate"></mat-progress-bar>
+        <div *ngIf="loadedDoneTasks" fxLayout="row wrap" fxLayoutAlign="start center" class="tab-row-content">
             <ng-container *ngFor="let task of doneTasks" class="tab-card-containter">
 
                 <mat-card class="task-card" fxFlex="0 1 calc(33.3% - 11px)"
