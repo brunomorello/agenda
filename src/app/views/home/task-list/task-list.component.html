@@ -1,4 +1,56 @@
-<mat-tab-group mat-align-tabs="start" id="tab_component">
-    <mat-tab label="To-do">To-do tasks</mat-tab>
-    <mat-tab label="Done">Done tasks</mat-tab>
-  </mat-tab-group>
+<mat-tab-group mat-align-tabs="start" class="tab-component">
+    <mat-tab label="To-do">
+        <div fxLayout="row wrap" fxLayoutAlign="start center" class="tab-row-content">
+            <ng-container *ngFor="let task of toDoTasks" class="tab-card-containter">
+
+                <mat-card class="task-card" fxFlex="0 1 calc(33.3% - 11px)"
+                fxFlex.lt-md="0 1 calc(50% - 11px)"
+                fxFlex.lt-sm="100%">
+                    <mat-card-title>{{ task.shortDescription }}</mat-card-title>
+                    <mat-card-subtitle>
+                        <p>
+                            {{ task.description }}
+                        </p>
+                        <span fxFlex="5"> Created At:</span>
+                        <span fxFlex="25" fxLayoutAlign="end center">
+                            <mat-chip>
+                                {{ task.createdAt | date:'short' }}
+                            </mat-chip>
+                        </span>
+                    </mat-card-subtitle>
+                    <mat-card-actions>
+                      <button mat-button>DONE</button>
+                      <button mat-button>REMOVE</button>
+                    </mat-card-actions>
+                  </mat-card>
+            </ng-container>
+        </div>       
+    </mat-tab>
+    <mat-tab label="Done">
+        <div fxLayout="row wrap" fxLayoutAlign="start center" class="tab-row-content">
+            <ng-container *ngFor="let task of doneTasks" class="tab-card-containter">
+
+                <mat-card class="task-card" fxFlex="0 1 calc(33.3% - 11px)"
+                fxFlex.lt-md="0 1 calc(50% - 11px)"
+                fxFlex.lt-sm="100%">
+                    <mat-card-title>{{ task.shortDescription }}</mat-card-title>
+                    <mat-card-subtitle>
+                        <p>
+                            {{ task.description }}
+                        </p>
+                        <span fxFlex="5"> Created At:</span>
+                        <span fxFlex="25" fxLayoutAlign="end center">
+                            <mat-chip>
+                                {{ task.createdAt | date:'short' }}
+                            </mat-chip>
+                        </span>
+                    </mat-card-subtitle>
+                    <mat-card-actions>
+                      <button mat-button>DONE</button>
+                      <button mat-button>REMOVE</button>
+                    </mat-card-actions>
+                  </mat-card>
+            </ng-container>
+        </div> 
+    </mat-tab>
+</mat-tab-group>

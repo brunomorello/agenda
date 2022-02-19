@@ -9,13 +9,22 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatInputModule} from '@angular/material/input'
+import {MatDialogModule} from '@angular/material/dialog'; 
 import { TaskListComponent } from './views/home/task-list/task-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { TaskFormDialogComponent } from './views/home/task-form-dialog/task-form-dialog.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskFormDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +33,15 @@ import { TaskListComponent } from './views/home/task-list/task-list.component';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+    HttpClientModule,
+    MatChipsModule,
+    MatDialogModule,
+    MatNativeDateModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

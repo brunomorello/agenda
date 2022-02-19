@@ -1,3 +1,25 @@
-#tab_component{
+.tab-component{
     padding: 1.5% 20px;
+}
+
+.task-card {
+    max-width: 400px;
+    margin: 5px;
+  }
+
+.tab-row-content {
+    padding: 2%;
+}
+
+.tab-card-containter {
+    margin: 0.5%;
+}
+
+.tab-card-header {
+    min-height: 30px;
+    padding: 10px;
+}
+
+.tab-card-actions button {
+    margin: 10px;
 }
