@@ -9,7 +9,7 @@ import { TaskResponsePageable } from '../model/taskResponsePageable.model';
 })
 export class TaskService {
 
-  apiUrl = new URL('http://localhost:8080/api/task/');
+  apiUrl = new URL('https://taskmanager-light.herokuapp.com/api/task/');
   httpOptions = {
     headers: new HttpHeaders({
       'Content-type': 'application/json'
