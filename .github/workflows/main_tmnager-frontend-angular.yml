@@ -24,8 +24,9 @@ jobs:
       - name: npm install, build, and test
         run: |
           npm install
-          npm run build --if-present
-          npm run test --if-present
+          npm run build --prod
+#          npm run test --if-present
+        working-directory: .
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
@@ -53,4 +54,4 @@ jobs:
           app-name: 'tmnager-frontend-angular'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DE34FBF06171479082030B2EB106C24E }}
-          package: .
+          package: ./dist/agenda
